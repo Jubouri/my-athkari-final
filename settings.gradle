@@ -1,2 +1,2 @@
-rootProject.name = "My-Athkari-App"
-include ':'
+rootProject.name = "Athkari"
+include ':app'
