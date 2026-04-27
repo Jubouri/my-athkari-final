@@ -12,17 +12,21 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: gradle
 
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+      - name: Create Missing Resources
+        run: |
+          mkdir -p app/src/main/res/values
+          echo '<resources><style name="Theme.Material3.DayNight.NoActionBar" parent="Theme.Material3.DayNight"/></resources>' > app/src/main/res/values/themes.xml
 
       - name: Build APK
         run: |
-          chmod +x gradlew || gradle wrapper
+          gradle wrapper
+          chmod +x gradlew
           ./gradlew assembleDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
           name: My-Athkari-App
-          path: "**/build/outputs/apk/debug/*.apk"
+          path: app/build/outputs/apk/debug/*.apk
