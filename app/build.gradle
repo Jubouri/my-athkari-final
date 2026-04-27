@@ -1,0 +1,22 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.example.athkari'
+    compileSdk 33
+    defaultConfig {
+        applicationId "com.example.athkari"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+    }
+    sourceSets {
+        main {
+            java.srcDirs = ['../']
+            manifest.srcFile '../AndroidManifest.xml'
+            res.srcDirs = ['../res']
+        }
+    }
+}
